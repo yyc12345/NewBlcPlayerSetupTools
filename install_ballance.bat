@@ -30,7 +30,7 @@ set full_path=%~dp0
 set installation_path=%full_path:~0,-1%
 
 
-xcopy /e /k /h /i Ballance_Files\ .\
+xcopy /e /k /h /i Ballance_Files\* .\
 del /s /q Ballance_Files\
 rmdir /s /q Ballance_Files
 
@@ -45,10 +45,10 @@ reg add %reg_path% /v SetupCommand /t REG_SZ /f /d "C:\Program Files\InstallShie
 reg add %reg_path% /v SrcDir /t REG_SZ /f /d C:\setup
 reg add %reg_path% /v SrcDisc /t REG_SZ /f /d C:
 reg add %reg_path% /v TargetDir /t REG_SZ /f /d %installation_path%
-reg add %reg_path% /v VideoDriver /t REG_DWORD /f /d 0x04000300
-reg add %reg_virtual_path% /v VideoDriver /t REG_DWORD /f /d 0x04000300
-reg add %reg_path% /v VideoMode /t REG_DWORD /f /d 0
-reg add %reg_virtual_path% /v VideoMode /t REG_DWORD /f /d 0
+reg add %reg_path% /v VideoDriver /t REG_DWORD /f /d 0
+reg add %reg_virtual_path% /v VideoDriver /t REG_DWORD /f /d 0
+reg add %reg_path% /v VideoMode /t REG_DWORD /f /d 0x04000300
+reg add %reg_virtual_path% /v VideoMode /t REG_DWORD /f /d 0x04000300
 
 
 echo Set oWS = WScript.CreateObject("WScript.Shell") > CreateShortcut.vbs
