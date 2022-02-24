@@ -24,22 +24,22 @@ goto end
 reg query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set arch=32bit || set arch=64bit
 
 if %arch%==64bit (
-  set reg_path=HKLM\SOFTWARE\WOW6432Node\Ballance\Settings
-  set reg_virtual_path=HKCR\VirtualStore\MACHINE\SOFTWARE\WOW6432Node\Ballance\Settings
+  set reg_path=HKLM\SOFTWARE\WOW6432Node\Ballance
+  set reg_virtual_path=HKCR\VirtualStore\MACHINE\SOFTWARE\WOW6432Node\Ballance
 ) else (
-  set reg_path=HKLM\SOFTWARE\Ballance\Settings
-  set reg_virtual_path=HKCR\VirtualStore\MACHINE\SOFTWARE\Ballance\Settings
+  set reg_path=HKLM\SOFTWARE\Ballance
+  set reg_virtual_path=HKCR\VirtualStore\MACHINE\SOFTWARE\Ballance
 )
 
 
-del /s /q .\
+reg delete %reg_path% /f
+reg delete %reg_virtual_path% /f
+
+
 set installation_path=%cd%
 cd ..\
 rmdir /s /q %installation_path%
 
-
-reg delete %reg_path%
-reg delete %reg_virtual_path%
 
 
 :end
