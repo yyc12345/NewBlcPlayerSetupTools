@@ -19,3 +19,7 @@ This batch file runs by automatically copying all files in the `Ballance_Files` 
 ## Creating your own custom version of Ballance
 
 Just put all your Ballance files in the `Ballance_Files` folder. Be sure to remove `INSTALL.log`, `UNWISE.exe`, `errorPlayer.csv`, `LogPlayer.csv` at first since they are not actually required by Ballance, but may in turn leak out your own settings. You may also want to replace `Database.tdb` with the default one (but do not delete it!).
+
+For Simplified Chinese language switch support, put the necessary files under `Ballance_Files\Languages\cn\`.
+
+The `switch_simplified_chinese.bat` file shall **not** be included if one does not wish to support switching languages.
