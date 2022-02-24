@@ -67,3 +67,4 @@ del CreateShortcut.vbs
 
 
 :end
+exit
