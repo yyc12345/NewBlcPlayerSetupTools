@@ -6,11 +6,13 @@ echo If you encounter any problems, switch to CMD and run this file as admin.
 
 
 set "params=%*"
-cd /d "%~dp0" && ( if exist "%temp%\getadmin.vbs" del "%temp%\getadmin.vbs" ) && fsutil dirty query %systemdrive% 1>nul 2>nul || (  echo Set UAC = CreateObject^("Shell.Application"^) : UAC.ShellExecute "cmd.exe", "/k cd ""%~sdp0"" && %~s0 %params%", "", "runas", 1 >> "%temp%\getadmin.vbs" && "%temp%\getadmin.vbs" && exit /B )
+set _sdp0=%~sdp0%
+set _s0=%~s0%
+cd /d "%~dp0" && ( if exist "%temp%\getadmin.vbs" del "%temp%\getadmin.vbs" ) && fsutil dirty query %systemdrive% 1>nul 2>nul || (  echo Set UAC = CreateObject^("Shell.Application"^) : UAC.ShellExecute "cmd.exe", "/k cd ""%_sdp0%"" && ""%_s0% %params%", "", "runas", 1 >> "%temp%\getadmin.vbs" && "%temp%\getadmin.vbs" && exit /B )
 
 
-if not exist Ballance_Files\ (
-  echo Error: installation folder not found.
+if not exist Ballance.zip (
+  echo Error: installation package not found.
   goto end
 )
 
@@ -29,10 +31,26 @@ if %arch%==64bit (
 set full_path=%~dp0
 set installation_path=%full_path:~0,-1%
 
+cd /d %~dp0
+Call :UnZipFile "." "Ballance.zip"
+goto remove_zip
 
-xcopy /e /k /h /i Ballance_Files\* .\
-del /s /q Ballance_Files\
-rmdir /s /q Ballance_Files
+:UnZipFile <ExtractTo> <newzipfile>
+set vbs="%temp%\_unzip_ballance.vbs"
+if exist %vbs% del /f /q %vbs%
+>%vbs%  echo Set fso = CreateObject("Scripting.FileSystemObject")
+>>%vbs% echo inputFolder = fso.GetAbsolutePathName(%1)
+>>%vbs% echo set objShell = CreateObject("Shell.Application")
+>>%vbs% echo zipfile = fso.GetAbsolutePathName(%2)
+>>%vbs% echo set FilesInZip=objShell.NameSpace(zipfile).items
+>>%vbs% echo objShell.NameSpace(inputFolder).CopyHere(FilesInZip)
+>>%vbs% echo Set fso = Nothing
+>>%vbs% echo Set objShell = Nothing
+cscript //nologo %vbs%
+if exist %vbs% del /f /q %vbs%
+
+:remove_zip
+del /s /q Ballance.zip
 
 
 reg add %reg_path%
