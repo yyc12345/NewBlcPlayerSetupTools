@@ -14,11 +14,11 @@ Run `uninstall.bat` as administrator. / 以管理员身份运行 `uninstall.bat`
 
 ## How it works
 
-This batch file runs by automatically copying all files in the `Ballance_Files` directory to the current one, setting up required registry values, and finally creating a shortcut on the desktop.
+This batch file runs by automatically decompressing and copying all files in the `Ballance.zip` archive to the current directoruy, setting up required registry values, and finally creating shortcuts to both `Startup.exe` and `Player.exe` on the desktop.
 
 ## Creating your own custom version of Ballance
 
-Just put all your Ballance files in the `Ballance_Files` folder. Be sure to remove `INSTALL.log`, `UNWISE.exe`, `errorPlayer.csv`, `LogPlayer.csv` at first since they are not actually required by Ballance, but may in turn leak out your own settings. You may also want to replace `Database.tdb` with the default one (but do not delete it!).
+Just put all your Ballance files in the `Ballance_Files` directory and create a ZIP archive named `Ballance.zip` for the contents of this directory (don't include the directory itself though). Be sure to remove `INSTALL.log`, `UNWISE.exe`, `errorPlayer.csv`, `LogPlayer.csv` at first since they are not actually required by Ballance, but may in turn leak out your own settings. You may also want to replace `Database.tdb` with the default one (but do not delete it!).
 
 For Simplified Chinese language switch support, put the necessary files under `Ballance_Files\Languages\cn\`.
 
