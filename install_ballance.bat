@@ -62,7 +62,7 @@ reg add %reg_path% /v ScrDisc /t REG_SZ /f /d C:\
 reg add %reg_path% /v SetupCommand /t REG_SZ /f /d "C:\Program Files\InstallShield Installation Information\{42E0783D-3BA4-454B-B58A-BF26E49EB7DE}\setup.exe"
 reg add %reg_path% /v SrcDir /t REG_SZ /f /d C:\setup
 reg add %reg_path% /v SrcDisc /t REG_SZ /f /d C:
-reg add %reg_path% /v TargetDir /t REG_SZ /f /d %installation_path%
+reg add %reg_path% /v TargetDir /t REG_SZ /f /d "%installation_path%"
 reg add %reg_path% /v VideoDriver /t REG_DWORD /f /d 0
 reg add %reg_virtual_path% /v VideoDriver /t REG_DWORD /f /d 0
 reg add %reg_path% /v VideoMode /t REG_DWORD /f /d 0x04000300
@@ -80,7 +80,7 @@ echo Set oLinkPlayer = oWS.CreateShortcut(sLink + "\Ballance Player.lnk") >> Cre
 echo oLinkPlayer.WorkingDirectory = "%full_path%bin" >> CreateShortcut.vbs
 echo oLinkPlayer.TargetPath = "%full_path%bin\Player.exe" >> CreateShortcut.vbs
 echo oLinkPlayer.Save >> CreateShortcut.vbs
-cscript CreateShortcut.vbs
+cscript //nologo CreateShortcut.vbs
 del CreateShortcut.vbs
 
 

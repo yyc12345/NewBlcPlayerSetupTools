@@ -47,7 +47,7 @@ reg delete %reg_virtual_path% /f
 
 set installation_path=%cd%
 cd ..\
-rmdir /s /q %installation_path%
+rmdir /s /q "%installation_path%"
 
 
 :abort
