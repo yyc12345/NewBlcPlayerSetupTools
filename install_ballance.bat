@@ -45,7 +45,7 @@ del /s /q Ballance.zip
 echo Set oWS = WScript.CreateObject("WScript.Shell") > CreateShortcut.vbs
 echo strDesktop = oWS.SpecialFolders("Desktop") >> CreateShortcut.vbs
 echo sLink = WScript.CreateObject("WScript.Shell").SpecialFolders("Desktop") >> CreateShortcut.vbs
-echo Set oLinkPlayer = oWS.CreateShortcut(sLink + "\Ballance Player.lnk") >> CreateShortcut.vbs
+echo Set oLinkPlayer = oWS.CreateShortcut(sLink + "\Ballance.lnk") >> CreateShortcut.vbs
 echo oLinkPlayer.WorkingDirectory = "%full_path%bin" >> CreateShortcut.vbs
 echo oLinkPlayer.TargetPath = "%full_path%bin\Player.exe" >> CreateShortcut.vbs
 echo oLinkPlayer.Save >> CreateShortcut.vbs
